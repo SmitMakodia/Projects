@@ -1,0 +1,362 @@
+/* style.css */
+
+/* Add these styles for the player number popup modal */
+#player-number-popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Background dimming */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#player-number-popup .modal-content {
+    background-color: #4CAF50; /* Green background */
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    max-width: 400px;
+    margin: auto;
+}
+
+#player-number-popup input {
+    padding: 10px;
+    font-size: 1em;
+    width: 80%;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+#player-number-popup button {
+    background-color: #fff;
+    color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+#player-number-popup button:hover {
+    background-color: #f2f2f2;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #BC8E66;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+}
+.red {
+    color: red;
+    text-shadow: -1px 0 rgb(255, 255, 255), 0 1px rgb(255, 255, 255), 1px 0 rgb(255, 255, 255), 0 -1px rgb(255, 255, 255);
+
+}
+
+.green {
+    color: green;
+    text-shadow: -1px 0 rgb(255, 255, 255), 0 1px rgb(255, 255, 255), 1px 0 rgb(255, 255, 255), 0 -1px rgb(255, 255, 255);
+
+}
+
+#shape-selection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.shape {
+    width: 180px;
+    height: auto;
+}
+
+#shape-selection img {
+    margin: 10px;
+    cursor: pointer;
+    object-fit: contain; /* Ensures the images scale proportionally */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Lift effect on hover */
+#shape-selection img:hover {
+    transform: translateY(-10px); /* Moves the image up */
+    box-shadow: 0 0 0 5px rgba(#000,.4) , 0 0 0 10px  #f05f75;}
+
+/* Optional: Apply the same shadow effect when the shape is clicked */
+#shape-selection img:active {
+    transform: translateY(5px); /* Slightly reduce the lift when clicked */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Deeper shadow when clicked */
+}
+
+#shape-selection img:hover {
+    transform: scale(1.1);
+}
+
+#quiz-container {
+    margin-top: 0%;
+}
+
+#quiz-title {
+    font-size: 4em;
+    /* margin-top: 150px; */
+    margin-bottom: 20px;
+}
+
+#question-container {
+    margin-top: 20px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#result-message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#quiz-questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#options-container {
+    margin-top: 20px;
+}
+
+button {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+}
+h1 {
+    font-size: 50px;
+  }
+
+  /* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Background dimming */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background-color: #f44336; /* Red background */
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    max-width: 400px;
+    margin: auto;
+}
+
+.modal button {
+    background-color: #fff;
+    color: #f44336;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.modal button:hover {
+    background-color: #f2f2f2;
+}
+
+/* addlife Styles */
+.addlife {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Background dimming */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.addlife-content {
+    background-color: #002703; /* dark green background */
+    padding: 30px;
+    border-radius: 10px;
+    color: rgb(79, 255, 62);
+    text-align: center;
+    font-size: 1.2em;
+    max-width: 400px;
+    margin: auto;
+}
+
+.addlife button {
+    background-color: #fff;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.addlife button:hover {
+    background-color: #f2f2f2;
+}
+
+/* Style for the doll image */
+#doll-image {
+    display: fixed; /* Ensures the image is a block-level element */
+    align-self: right;
+    margin-top: 20px; /* Space between the timer box and the doll image */
+    margin-left: auto; /* Centers the image horizontally */
+    margin-right: auto; /* Centers the image horizontally */
+    max-width: 100%; /* Ensures the image is responsive */
+    height: auto; /* Keeps the aspect ratio of the image */
+    max-height: 200px; /* Limits the height of the image */
+}
+
+/* Timer box */
+#timer-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 20px;
+    background-color: #000000;
+    color: rgb(255, 0, 0);
+    font-size: 4em;
+    font-weight: bold;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;    z-index: 1000;  /* Ensure it's on top */
+}
+/* Style for the doll image */
+#doll-image {
+    position: fixed;
+    top: 70px;
+    right: 40px;
+    padding: 20px;
+    margin-top: 0;    z-index: 1000; 
+}
+
+.img{
+z-index: 2;
+width: 100%;
+}
+.img img{
+    position: absolute;
+    top:20%;
+    left: 2%;
+    width: 15%;
+
+}
+
+/* Speech bubble styles */
+.speech-bubble {
+    /* position: fixed; */
+    margin-left: 50%;
+    top: 15%;  /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);  /* Centers the bubble horizontally */
+    padding: 15px;
+    background-color: #CC333F;
+    color: white;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: xx-large;
+    text-align: left;
+    max-width: 150%;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    z-index: 2;  /* Ensure it is above other content */
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -140px; /* Position the tail below the bubble */
+    left: -90px;
+    transform: translateX(0%) rotate(60deg); /* Offset by half its width and rotate for the triangle */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent; /* Left part of the triangle */
+    border-right: 10px solid transparent; /* Right part of the triangle */
+    border-top: 200px solid #CC333F; /* Color and size of the tail */
+}
+
+/* Container for the progress bar */
+#progress-bar-container {
+    position: fixed; /* Fix it to the right side */
+    right: 0; /* Align it to the right */
+    top: 50%; /* Start just below the doll */
+    transform: translateY(50%); /* Adjust to ensure it starts below the doll */
+    width: 20px; /* Set the width of the progress bar container */
+    height: 50%; /* Make it span from below the doll to the bottom */
+    background-color: transparent; /* Optional: no background */
+    z-index: 5; /* Ensure it's below the doll */
+}
+
+/* Style for the progress bar itself */
+#progress-bar {
+    width: 100%; /* Full width of the container */
+    height: 20px; /* Height of the progress bar */
+    transform: rotate(-90deg);
+}
+
+/* Style for the progress text */
+#progress-text {
+    position: absolute;
+    top: 0;
+    right: 100%; /* Position the text to the left of the progress bar */
+    padding-right: 10px; /* Space between the text and progress bar */
+    font-size: 5rem;
+    color: #000; /* Text color */
+    transform: translateY(-50%); /* Adjust to center the text */
+}
+#progress-gif-container {
+    position: fixed;
+    right: 0;
+    bottom: -10%;
+    width: 200px;  /* Adjust the width as per your needs */
+    height: auto; /* Adjust the height as per your needs */
+    transition: bottom 0.5s ease-in-out; /* Smooth transition for upward movement */
+}
+
+#progress-gif {
+    width: 100%;
+    height: 100%;
+}

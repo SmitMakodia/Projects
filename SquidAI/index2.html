@@ -1,0 +1,72 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Competition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="img"><img src="./questionBoy.png" alt=""></div>
+
+    <!-- Popup for Player Number Input -->
+    <div id="player-number-popup" class="modal">
+        <div class="modal-content">
+            <h2>Welcome, Player !</h2>
+            <input type="number" id="player-number-input" placeholder="Enter Player Number" />
+            <button onclick="startQuizFromInput()">Start Quiz</button>
+        </div>
+    </div>
+
+    <div id="quiz-container" style="display:none;">
+        <h1 id="RGhead"><span class="red">RED</span> LIGHT, <span class="green">GREEN</span> LIGHT</h1>
+        <div class="speech-bubble">
+            Choose a SHAPE...
+          </div>
+        <div id="quiz-questions">
+            <h2 id="quiz-title"></h2>
+            <div id="question-container"></div>
+            <div id="result-message"></div>
+            <button id="next-question" onclick="nextQuestion()" style="display:none;">Next Question</button>
+        </div>
+    </div>
+
+    <!-- Add this inside your body tag -->
+<div id="progress-gif-container">
+    <img id="progress-gif" src="your-gif-url.gif" alt="Progress GIF" />
+</div>
+
+
+    <!-- Timer Box -->
+    <div id="timer-box">
+        <span id="timer"></span>
+    </div>
+    <img src="doll.png" id="doll-image" alt="Doll Image">
+
+    <!-- Modal for adding Extra Life -->
+    <div id="add-life-modal" class="addlife">
+        <div class="addlife-content">
+            <h2>Bravo!</h2>
+            <p>You have earned 1 extra life.</p>
+            <button onclick="closeaddlife()">OK</button>
+        </div>
+    </div>
+
+    <!-- Modal for removing Extra Life -->
+    <div id="extra-life-modal" class="modal">
+        <div class="modal-content">
+            <p>Your answer was incorrect,</p>
+            <p>You have just 1 life left.</p>
+            <button onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <div id="progress-bar-container">
+        <progress id="progress-bar" value="0" max="100"></progress>
+        <span id="progress-text">0</span>
+    </div>
+
+    <script src="quiz3.js"></script>
+</body>
+</html>
