@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Pong</title>
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/742/742751.png">
+
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to right, #ff00ff, #00ffff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+        canvas {
+            background: black;
+            border: 2px solid white;
+        }
+        .game-over, .start-screen {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .start-btn, .retry-btn {
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .start-btn:hover, .retry-btn:hover {
+            background: lightgray;
+        }
+        .player-names {
+            display: flex;
+            justify-content: space-between;
+            width: 600px;
+            margin-bottom: 10px;
+        }
+        .player-names input {
+            width: 45%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiplayer Pong</h1>
+    <div class="player-names">
+        <input type="text" id="player1" placeholder="Enter Player 1 Name">
+        <input type="text" id="player2" placeholder="Enter Player 2 Name">
+    </div>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <div class="start-screen" id="startScreen">
+        <button class="start-btn" onclick="startGame()">Start Game</button>
+    </div>
+    <div class="game-over" id="gameOverScreen">
+        <h2 id="winnerText"></h2>
+        <button class="retry-btn" onclick="retryGame()">Retry</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const gameOverScreen = document.getElementById("gameOverScreen");
+        const winnerText = document.getElementById("winnerText");
+        const player1Input = document.getElementById("player1");
+        const player2Input = document.getElementById("player2");
+        const startScreen = document.getElementById("startScreen");
+
+        let ball = { x: 300, y: 200, dx: 4, dy: 4, radius: 10 };
+        let paddle1Y = 150, paddle2Y = 150;
+        const paddleHeight = 120, paddleWidth = 20;
+        let gameRunning = false;
+        let activePaddle = ball.dx < 0 ? 1 : 2;
+        let paddle1DY = 0, paddle2DY = 0;
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowUp") paddle2DY = -5;
+            if (e.key === "ArrowDown") paddle2DY = 5;
+            if (e.key === "w") paddle1DY = -5;
+            if (e.key === "s") paddle1DY = 5;
+        });
+        
+        document.addEventListener("keyup", (e) => {
+            if (e.key === "ArrowUp" || e.key === "ArrowDown") paddle2DY = 0;
+            if (e.key === "w" || e.key === "s") paddle1DY = 0;
+        });
+
+        canvas.addEventListener("mousemove", (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const y = e.clientY - rect.top - paddleHeight / 2;
+            if (activePaddle === 1) paddle1Y = Math.max(0, Math.min(canvas.height - paddleHeight, y));
+            if (activePaddle === 2) paddle2Y = Math.max(0, Math.min(canvas.height - paddleHeight, y));
+        });
+
+        function gameLoop() {
+            if (!gameRunning) return;
+            paddle1Y += paddle1DY;
+            paddle2Y += paddle2DY;
+
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            if (ball.y <= 0 || ball.y >= canvas.height) ball.dy *= -1;
+            activePaddle = ball.dx < 0 ? 1 : 2;
+
+            if ((ball.x <= 30 && activePaddle === 1 && ball.y >= paddle1Y && ball.y <= paddle1Y + paddleHeight) ||
+                (ball.x >= canvas.width - 30 && activePaddle === 2 && ball.y >= paddle2Y && ball.y <= paddle2Y + paddleHeight)) {
+                ball.dx *= -1;
+            }
+
+            if (ball.x < 0) gameOver(player2Input.value || "Right Player");
+            if (ball.x > canvas.width) gameOver(player1Input.value || "Left Player");
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "cyan";
+            ctx.fillRect(10, paddle1Y, paddleWidth, paddleHeight);
+            ctx.fillStyle = "magenta";
+            ctx.fillRect(canvas.width - 30, paddle2Y, paddleWidth, paddleHeight);
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fill();
+            requestAnimationFrame(gameLoop);
+        }
+
+        function gameOver(winner) {
+            gameRunning = false;
+            winnerText.innerText = `${winner} Wins!`;
+            gameOverScreen.style.display = "block";
+        }
+
+        function retryGame() {
+            gameOverScreen.style.display = "none";
+            ball = { x: 300, y: 200, dx: 4, dy: 4, radius: 10 };
+            gameRunning = true;
+            gameLoop();
+        }
+
+        function startGame() {
+            startScreen.style.display = "none";
+            gameRunning = true;
+            gameLoop();
+        }
+
+        startScreen.style.display = "block";
+    </script>
+</body>
+</html>
