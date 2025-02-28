@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Timetable Planner</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Timetable Planner</h1>
+
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+      <h2>Progress Tracker</h2>
+      <div class="goal">
+        <p>Study Hours: <span id="studyHours">0</span> / 10</p>
+        <progress id="studyProgress" value="0" max="10"></progress>
+        <span id="studyPercent">0%</span>
+      </div>
+      <div class="goal">
+        <p>Assignments Completed: <span id="assignmentsDone">0</span> / 3</p>
+        <progress id="assignmentsProgress" value="0" max="3"></progress>
+        <span id="assignmentsPercent">0%</span>
+      </div>
+      <button onclick="resetProgress()">Reset Progress</button>
+    </div>
+
+    <!-- Timetable -->
+    <div id="timetable">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body">
+          <!-- Rows will be dynamically generated -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- "Completed" Button -->
+    <div id="taskControl" style="display: none;">
+      <p>Selected Task: <span id="selectedTask"></span></p>
+      <button onclick="markCompleted()">Completed</button>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="chart-container">
+      <h2>Time Distribution</h2>
+      <canvas id="timeChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Modal for adding a task -->
+  <div id="taskModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Add Task</h2>
+      <input type="text" id="taskInput" placeholder="Enter task here" />
+      <div class="checkbox-container">
+        <input type="checkbox" id="assignmentCheckbox" />
+        <label for="assignmentCheckbox">Assignment</label>
+      </div>
+      <button id="saveTaskButton">Save Task</button>
+      <button id="cancelTaskButton">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
