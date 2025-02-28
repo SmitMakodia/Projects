@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TODO App - Task Management</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body data-theme="dark">
+
+    <header class="header">
+        <div class="title">TODO Application</div>
+        <div class="header-buttons" id="authButtons">
+            <button class="btn" id="openLogin">Login</button>
+            <button class="btn" id="openRegister">Register</button>
+        </div>
+        <div class="header-buttons">
+            <button class="btn" id="logoutButton" style="display: none;">Logout</button>
+            <button class="btn" id="openAddTask" style="display: none;">Add Task</button>
+            <button class="btn" id="modeToggle">Dark Mode</button>
+        </div>
+    </header>
+    <div class="container">
+        <div class="task-list" id="taskList" style="display: none;"></div>
+    </div>
+    <!-- Include modals for login, registration, add task, edit task -->
+
+
+
+
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <button class="close-modal" data-close="loginModal">&times;</button>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" required />
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" required />
+                <label style="display: flex; align-items: center; gap: 5px; margin-top: 10px;">
+                    <input type="checkbox" id="rememberMe" />
+                    Remember Me
+                </label>
+                <button type="submit" class="btn">Login</button>
+            </form>
+
+            <div id="loginError" class="error"></div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <button class="close-modal" data-close="registerModal">&times;</button>
+            <h2>Register</h2>
+            <form id="registerForm">
+                <label for="regUsername">Username</label>
+                <input type="text" id="regUsername" required />
+                <label for="regEmail">Email</label>
+                <input type="email" id="regEmail" required />
+                <label for="regPassword">Password</label>
+                <input type="password" id="regPassword" required />
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <div id="registerError" class="error"></div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal-overlay" id="addTaskModal">
+        <div class="modal">
+            <button class="close-modal" data-close="addTaskModal">&times;</button>
+            <h2>Add Task</h2>
+            <form id="addTaskForm">
+                <label for="taskTitle">Title</label>
+                <input type="text" id="taskTitle" required />
+                <label for="taskDescription">Description</label>
+                <textarea id="taskDescription"></textarea>
+                <label for="taskDueDate">Due Date</label>
+                <input type="date" id="taskDueDate" required />
+                <button type="submit" class="btn">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div class="modal-overlay" id="editTaskModal">
+        <div class="modal">
+            <button class="close-modal" data-close="editTaskModal">&times;</button>
+            <h2>Edit Task</h2>
+            <form id="editTaskForm">
+                <input type="hidden" id="editTaskId" />
+                <label for="editTaskTitle">Title</label>
+                <input type="text" id="editTaskTitle" required />
+                <label for="editTaskDescription">Description</label>
+                <textarea id="editTaskDescription"></textarea>
+                <label for="editTaskDueDate">Due Date</label>
+                <input type="date" id="editTaskDueDate" required />
+                <button type="submit" class="btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+
+
+
+</body>
+
+</html>
